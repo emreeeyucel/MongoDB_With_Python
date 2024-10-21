@@ -1,0 +1,228 @@
+# pymongo modülünü MongoDB Server erişmek için kullanacağız.
+from pymongo import MongoClient
+from pprint import pprint
+import re
+
+# Connection String oluşturuyoruz. Bu connection string vasıtasıyla app ile server bağlantı kuracak.
+conn = MongoClient('mongodb://localhost:27017/')
+
+# server üzerinde bir veri tabanı yaratılım
+db = conn['app_db']
+# yukarı da yarattığımız veri tabanı içerisine bir collection açalım
+collection = db['productc']
+
+
+# region Tek Kayıt Ekleme
+product_name = input('Product Name: ')
+price = input('Price: ')
+
+product = {
+    'name': product_name,
+    'price': price
+}
+result = collection.insert_one(product)
+
+print("Eklenen belgelerin ID'leri:", result.inserted_id)     # result.inserted_id  --> MongoDB'de bir belgeyi başarıyla ekledikten sonra döndürülen bir özelliktir. / Yeni eklenen belgenin _id'sini yazdırır
+#endregion
+
+
+
+
+#  region Çoklu Kayıt Ekleme
+product_list = [
+    {'_id': 1, 'name':  'Lenova X1 Carbon', 'price': 84.999},
+    {'_id': 2, 'name':  'Mcbook Pro M3', 'price': 184.999},
+    {'_id': 3, 'name':  'Asus Zen Book', 'price': 74.999},
+    {'_id': 4, 'name':  'Monster Alba', 'price': 33.999},
+    {'_id': 5, 'name':  'Monster Tulpar', 'price': 64.999},
+]
+
+result = collection.insert_many(product_list)
+print(result)
+
+# insert_many() -->  MongoDB'ye birden fazla belge eklemek için kullanılır, eklenecek belgelerin bir liste içinde belirtilmesi gerekir.Listelerin içini ise set olarak oluşturmak zorundayız.
+# insert_one() -->   MongoDB'ye sadece tek bir belge eklemek için kullanılır.
+
+#endregion
+
+
+
+
+# region Kayıtları Ekrana Getirme
+veriler = collection.find()
+
+for item in veriler:
+    print(item)
+
+#endregion
+
+
+
+
+# region Fiyatı 50.000'den büyük olan ürünleri Listeleme
+
+my_filter = {
+    'price': {'$gt': 50.000}
+}
+
+veriler = collection.find(my_filter)
+
+for item in veriler:
+    print(item)
+
+
+# $lt: Küçüktür (less than)
+# $gt: Büyüktür (greater than)
+# $lte: Küçük eşittir (less than or equal to)
+# $gte: Büyük eşittir (greater than or equal to)
+# $eq: Eşittir (equal to)
+# $ne: Eşit değildir (not equal to)
+# $in: Belirtilen değerler kümesinde bulunur (in array) - $in operatörünü kullanırken değerler listesini [ ] içinde belirtiriz.
+# $nin: Belirtilen değerler kümesinde bulunmaz (not in array)
+
+# endregion
+
+
+
+
+# region Fiyatı 80.000'e eşit ve daha az olan ürünleri Listeleme
+
+my_filter = {
+    'price': {
+        '$lte': 80.000
+    }
+}
+veriler = collection.find(my_filter)
+
+for item in veriler:
+    print(item)
+
+# endregion
+
+
+
+
+# region Fiyatı 20.000 ile 100.000 Arasında Olan Ürünler Listeleme.
+
+queery = {'$and': [{'price': {'$gte': 20.000}}, {'price': {'$lte': 100.000}}]}
+
+for item in collection.find(queery):
+    print(item)
+# endregion
+
+
+
+
+# region Ürün İsminde  "Monster" Geçen ve Fiyatı 50.000'den Büyük olan Ürünleri Listeleme (regex formülü)
+
+queery = {
+    '$and': [
+        {'price': {'$gt': 50.000}},
+        {'name': {'$regex': 'Monster', '$options': 'i'}}
+    ]
+}
+for item in collection.find(queery):
+    print(item)
+
+# '$options': 'i' ifadesi, regex ifadesinin büyük-küçük harf duyarlılığını devre dışı bırakır.
+
+
+# "Monster" geçmeyen belgeleri bulmak için sorgu ;
+my_query = {
+    '$and': [
+        {'price': {'$lt': 50.000}},
+        {'name': {'$not': {'$regex': 'Monster', '$options': 'i'}}}
+    ]
+}
+# endregion
+
+
+
+
+# region Update
+
+# Path 1
+result = collection.update_one(
+    filter={'name': {'$regex': 'Monster'}},
+    update={
+        '$set': {
+            'name': 'Del Vega',
+            'price': 69.000
+        }
+    }
+)
+print(f'{result.modified_count} adet kayıt güncellendi')
+
+#  $set operatörü, MongoDB'de belgelerdeki belirli alanları güncellemek veya yeni alanlar eklemek için kullanılır. updateOne, updateMany veya findOneAndUpdate gibi yöntemlerle birlikte kullanılır.
+
+# Path 2
+filter = {'name': {'$regex': 'Monster', '$options': 'i'}}
+set_value = {'$set': {'name': 'Apple', 'price': 99.999}}
+collection.update_one(filter, set_value)
+
+
+# update_one şartı sağlayan ilk ürünü günceller, update_many ise tüm monster olanları günceller.
+# endregion
+
+
+
+
+# region İsminde Apple Geçenlerin Fiyatını %10 arttır. Artışını Güncelleme
+
+collection.update_many(
+    {"name": {"$regex": "Apple", "$options": "i"}},
+    {"$mul": {"price": 1.10}}
+)
+
+# $mul --> MongoDB'de bir güncelleme operatörüdür ve bir sayısal alanın mevcut değerini belirtilen bir sayı ile çarpmak için kullanılır.
+
+# endregion
+
+
+
+
+# region Tüm Ürünlerin Fiyatını Azaltma:
+collection.update_many(
+    {},
+    {"$mul": {"price": 0.95}}
+)
+# endregion
+
+
+
+
+# region Ürünleri Artan Fiyata Göre Sıralama
+for item in collection.find().sort("price", 1):
+    print(item)
+
+# endregion
+
+
+
+
+# region Ürünleri İsimlerine Göre(Z-A) Sıralama
+for item in collection.find().sort("name", -1):
+    print(item)
+
+# endregion
+
+
+
+
+# region Ürün Sayısını Hesaplama
+print(collection.count_documents({}))
+# endregion
+
+
+
+
+# region Price Alanı Boş olan ürünlerin Değerini 1 olarak güncelle
+result = collection.update_many(
+    filter={'price': {'$exists': False}},          # 'price' alanı olmayanları filtrele
+    update={
+        '$set': {
+            'price': 1
+        }
+    }
+)
+# endregion
