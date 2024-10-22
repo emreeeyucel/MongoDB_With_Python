@@ -12,7 +12,7 @@ db = conn['app_db']
 collection = db['productc']
 
 
-# region Tek Kayıt Ekleme
+# region Tek Kayıt Ekleme.
 product_name = input('Product Name: ')
 price = input('Price: ')
 
