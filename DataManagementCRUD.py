@@ -36,9 +36,12 @@ product_list = [
     {'_id': 4, 'name':  'Monster Alba', 'price': 33.999},
     {'_id': 6, 'name':  'Monster Tulpar', 'price': 64.999},
     {'_id': 7, 'name':  'Monster Huma', 'price': None},
-    {'_id': 8, 'name':  'HP ', 'price': '???'},
+    {'_id': 8, 'name':  'HP', 'price': '???'},
     {'_id': 10, 'name':  None, 'price': '???'},
-    {'_id': 11, 'name':  '???', 'price': '???'}
+    {'_id': 11, 'name':  '???', 'price': ''},
+    {'_id': 12, 'name':  '???'},
+    {'_id': 13, 'price': '???'},
+    {'_id': 14, 'price': ''}
 ]
 
 result = collection.insert_many(product_list)
