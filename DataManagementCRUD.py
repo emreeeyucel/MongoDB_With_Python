@@ -282,6 +282,14 @@ print(collection.count_documents({}))
 
 
 
+# region Kaç Adet Monster Bulunmaktadır.
+query = {'name': {'$regex': 'monster', '$options': 'i'}}
+print(collection.count_documents(query))
+# endregion
+
+
+
+
 # region Price Alanı Boş olan ürünlerin Değerini 1 olarak güncelle
 result = collection.update_many(
     filter={'price': {'$exists': False}},          # 'price' alanı olmayanları filtrele
