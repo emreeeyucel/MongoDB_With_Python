@@ -182,6 +182,29 @@ for item in collection.find(query):
 
 
 
+# region Price alanı boş olan, string olan ve None olan değerleri bulma.
+
+filters = {'price': ''}
+querys = {'price': None}
+my_filters = {'price': {"$exists": False}}
+
+for filter in collection.find(filters):
+    print(filter)
+
+for query in collection.find(querys):
+    print(query)
+
+for my_filter in collection.find(my_filters):
+    print(my_filter)
+
+# Mevcut olmayan alanları bulma ==> {'price': {"$exists": False}}
+# Boş string değerleri bulma ==> {"name": ""}
+# None değerleri bulma ==> {"name": None}
+# endregion
+
+
+
+
 # region Update
 
 # Path 1
