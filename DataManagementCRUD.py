@@ -197,9 +197,9 @@ for query in collection.find(querys):
 for my_filter in collection.find(my_filters):
     print(my_filter)
 
-# Mevcut olmayan alanları bulma ==> {'price': {"$exists": False}}
-# Boş string değerleri bulma ==> {"name": ""}
-# None değerleri bulma ==> {"name": None}
+# Mevcut olmayan alanları bulma ==> {"price": {"$exists": False}}
+# Boş string değerleri bulma ==> {"price": ""}
+# None değerleri bulma ==> {"price": None}
 # endregion
 
 
