@@ -43,6 +43,7 @@ product_list = [
 
 result = collection.insert_many(product_list)
 print(result)
+print(result.acknowledged)
 
 # insert_many() -->  MongoDB'ye birden fazla belge eklemek için kullanılır, eklenecek belgelerin bir liste içinde belirtilmesi gerekir.Listelerin içini ise set olarak oluşturmak zorundayız.
 # insert_one() -->   MongoDB'ye sadece tek bir belge eklemek için kullanılır.
