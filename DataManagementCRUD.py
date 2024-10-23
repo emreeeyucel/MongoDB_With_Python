@@ -144,6 +144,40 @@ my_query = {
 
 
 
+# region Fiyatı 20.000 ile 100.000 arasında olan Monster ürünlerini fiyatlar artan olarak listele.
+
+filter = {
+    '$and': [{'price': {'$gte': 20.000}}, {'price': {'$lte': 100.000}}, {'name': {'$regex': 'monster', '$options': 'i'}}]
+}
+
+for item in collection.find(filter).sort('price', 1):
+    print(item)
+# endregion
+
+
+
+
+# region Fiyatı 33.999, 64.999, 50.000 olan ürünlerin listele
+        # $in Operatörü: $in, bir alanın belirtilen bir dizi değerden herhangi birine eşit olup olmadığını kontrol eder
+
+query = {'price': {'$in': [33.999, 64.999, 50.000]}}
+for item in collection.find(query):
+    print(item)
+# endregion
+
+
+
+
+# region Fiyatı 33.999, 64.999, 50.000 olan Monster Alba'nın ürünlerini listele
+query = {'$and': [{'price': {'$in': [33.999, 64.999, 50.000]}}, {'name': {'$regex': 'Alba', '$options': 'i'}}]}
+
+for item in collection.find(query):
+    print(item)
+# endregion
+
+
+
+
 # region Update
 
 # Path 1
