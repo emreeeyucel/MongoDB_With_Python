@@ -200,7 +200,7 @@ filter = {'name': {'$regex': 'Monster', '$options': 'i'}}
 set_value = {'$set': {'name': 'Apple', 'price': 99.999}}
 collection.update_one(filter, set_value)
 
-
+# Not ==>  Sadece 'name': 'Del Vega' yapılsaydı name değişir, price aynı kalıcaktı.
 # update_one şartı sağlayan ilk ürünü günceller, update_many ise tüm monster olanları günceller.
 # endregion
 
