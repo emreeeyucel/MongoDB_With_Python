@@ -34,7 +34,11 @@ product_list = [
     {'_id': 2, 'name':  'Mcbook Pro M3', 'price': 184.999},
     {'_id': 3, 'name':  'Asus Zen Book', 'price': 74.999},
     {'_id': 4, 'name':  'Monster Alba', 'price': 33.999},
-    {'_id': 5, 'name':  'Monster Tulpar', 'price': 64.999},
+    {'_id': 6, 'name':  'Monster Tulpar', 'price': 64.999},
+    {'_id': 7, 'name':  'Monster Huma', 'price': None},
+    {'_id': 8, 'name':  'HP ', 'price': '???'},
+    {'_id': 10, 'name':  None, 'price': '???'},
+    {'_id': 11, 'name':  '???', 'price': '???'}
 ]
 
 result = collection.insert_many(product_list)
