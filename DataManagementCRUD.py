@@ -59,7 +59,7 @@ for item in veriler:
 
 
 
-# region Fiyatı 50.000'den büyük olan ürünleri Listeleme
+# region Fiyatı 50.000'den büyük olan ürünleri Listeleme.
 
 my_filter = {
     'price': {'$gt': 50.000}
@@ -77,8 +77,9 @@ for item in veriler:
 # $gte: Büyük eşittir (greater than or equal to)
 # $eq: Eşittir (equal to)
 # $ne: Eşit değildir (not equal to)
-# $in: Belirtilen değerler kümesinde bulunur (in array) - $in operatörünü kullanırken değerler listesini [ ] içinde belirtiriz.
+# $in: Belirtilen değerler kümesinde bulunur (in array) - $in operatörünü kullanırken değerler listesini [ ] içinde belirtiriz.$in operatöründe belirtilen değerlerden herhangi birini sağlaması yeterlidir.
 # $nin: Belirtilen değerler kümesinde bulunmaz (not in array)
+# $and:  iki veya daha fazla koşulu aynı anda sağlaması gereken belgeleri bulmak için kullanılır..
 
 # endregion
 
