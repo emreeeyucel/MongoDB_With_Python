@@ -312,6 +312,16 @@ print(collection.count_documents(query))
 
 
 
+# region Fiyatı ??? eşit olanları olanları listeleyelim.Ayrıca Sadece isim bilgisi ve fiyat değeri ile ekrana gelsin.
+
+query = {'price': {'$eq': '???'}}
+
+for item in collection.find(query, {'name': 1, 'price': 1, '_id': 0}):
+    print(item)
+# endregion
+
+
+
 
 # region Price Alanı Boş olan ürünlerin Değerini 1 olarak güncelle
 result = collection.update_many(
