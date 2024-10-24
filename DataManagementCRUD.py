@@ -269,7 +269,6 @@ for item in collection.find().sort("price", 1):
 # region Ürünleri İsimlerine Göre(Z-A) Sıralama
 for item in collection.find().sort("name", -1):
     print(item)
-
 # endregion
 
 
@@ -285,14 +284,14 @@ for item in collection.find(query):
 
 
 
+# region İsim alanı string olmayan tüm belgeleri bulalım.
 
+query = {'name': {'$not': {'$type': 'string'}}}
 
-
-
-# for item in collection.find(query):
-#     print(item)
-
+for item in collection.find(query):
+    print(item)
 # endregion
+
 
 
 
