@@ -303,10 +303,12 @@ print(collection.count_documents({}))
 
 
 
+
 # region Kaç Adet Monster Bulunmaktadır.
 query = {'name': {'$regex': 'monster', '$options': 'i'}}
 print(collection.count_documents(query))
 # endregion
+
 
 
 
