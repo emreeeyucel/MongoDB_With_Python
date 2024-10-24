@@ -275,6 +275,28 @@ for item in collection.find().sort("name", -1):
 
 
 
+# region Fiyat Alanı sayısal olmayan (int ve float) tüm alanları Listeleyelim.
+query = {'price': {'$not': {'$type': ['int', 'double']}}}               # int ve float (double) olmayanlar
+
+for item in collection.find(query):
+    print(item)
+# endregion
+
+
+
+
+
+
+
+
+# for item in collection.find(query):
+#     print(item)
+
+# endregion
+
+
+
+
 # region Ürün Sayısını Hesaplama
 print(collection.count_documents({}))
 # endregion
