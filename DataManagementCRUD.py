@@ -333,3 +333,64 @@ result = collection.update_many(
     }
 )
 # endregion
+
+
+
+
+# region Fiyatların Toplamını Bulma ($sum)
+pipeline = [
+    {"$match": {"price": {"$type": ["int", "double"]}}},
+    {"$group": {"_id": None, "toplam_fiyat": {"$sum": "$price"}}}
+]
+
+result = collection.aggregate(pipeline)
+for r in result:
+    print(f"Toplam Fiyat: {r['toplam_fiyat']}")
+# endregion
+
+
+
+
+# region Fiyatların Ortalamasını Bulma ($avg)
+pipeline = [
+    {"$group": {"_id": None, "ortalama_fiyat": {"$avg": "$price"}}}
+]
+
+result = collection.aggregate(pipeline)
+for r in result:
+    print(f"Ortalama Fiyat: {r['ortalama_fiyat']}")
+
+# endregion
+
+# region  Fiyatların ortalamasını ve Toplamını Bulma
+
+pipeline = [
+    {'$match': {'price': {'$type': ['int', 'double']}}},
+    {'$group': {'_id': None, 'Ortamala Fiyat Bilgisi': {'$avg': '$price'}, 'Toplam Fiyat': {'$sum': '$price'}}},
+
+]
+
+result = collection.aggregate(pipeline)
+for item in result:
+    pprint(item)
+# endregion
+
+
+
+
+# region İsimlerinde "Monster" Geçen Ürünlerin Fiyatlarını Toplama
+
+pipeline = [
+    {'$match': {'name': {'$regex': 'monster', '$options': 'i'},                 # "Monster" kelimesini içeren ürünleri bul
+                'price': {'$type': ['int', 'double']}}},
+    {'$group': {'_id': None, 'Toplam Fiyat': {'$sum': '$price'}, 'Ortalama Fiyat': {'$avg': '$price'}
+                }}
+]
+
+result = collection.aggregate(pipeline)
+
+for item in result:
+    print(item)
+    print(f"Toplam Fiyat (Monster Ürünler): {item['Toplam Fiyat']}")
+    print(f"Ortalama Fiyat (Monster Ürünler): {item['Ortalama Fiyat']}")
+# endregion
