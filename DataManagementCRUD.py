@@ -30,20 +30,34 @@ print("Eklenen belgelerin ID'leri:", result.inserted_id)     # result.inserted_i
 
 #  region Çoklu Kayıt Ekleme
 product_list = [
-    {'_id': 1, 'name': 'Lenova X1 Carbon', 'price': 84.999, 'country': 'USA'},
-    {'_id': 2, 'name': 'Mcbook Pro M3', 'price': 184.999, 'country': 'USA'},
-    {'_id': 3, 'name': 'Asus Zen Book', 'price': 74.999, 'country': 'Taiwan'},
-    {'_id': 4, 'name': 'Monster Alba', 'price': 33.999, 'country': 'Turkey'},
-    {'_id': 5, 'name': 'Monster Tulpar', 'price': 64.999, 'country': 'Turkey'},
-    {'_id': 6, 'name': 'Monster Huma', 'price': None, 'country': 'Turkey'},
-    {'_id': 7, 'name': 'HP', 'price': '???', 'country': 'USA'},
-    {'_id': 8, 'name': None, 'price': '???', 'country': 'Unknown'},
-    {'_id': 9, 'name': '???', 'price': '', 'country': None},
-    {'_id': 10, 'name': '???', 'price': '', 'country': 'Unknown'},
-    {'_id': 11, 'price': '???', 'country': 'Unknown'},
-    {'_id': 12, 'price': '', 'country': 'Unknown'}
+    {'_id': 1, 'name': 'Lenova X1 Carbon', 'price': 84.999, 'country': 'USA', 'stock': 12},
+    {'_id': 2, 'name': 'Mcbook Pro M3', 'price': 184.999, 'country': 'USA', 'stock': 8},
+    {'_id': 3, 'name': 'Asus Zen Book', 'price': 74.999, 'country': 'Taiwan', 'stock': 15},
+    {'_id': 4, 'name': 'Monster Alba', 'price': 33.999, 'country': 'Turkey', 'stock': 20},
+    {'_id': 5, 'name': 'Monster Tulpar', 'price': 64.999, 'country': 'Turkey', 'stock': 7},
+    {'_id': 6, 'name': 'Monster Huma', 'price': None, 'country': 'Turkey', 'stock': 0},
+    {'_id': 7, 'name': 'HP', 'price': '???', 'country': 'USA', 'stock': 5},
+    {'_id': 8, 'name': None, 'price': '???', 'country': 'Unknown', 'stock': 0},
+    {'_id': 9, 'name': '???', 'price': '', 'country': None, 'stock': 0},
+    {'_id': 10, 'name': '???', 'price': '', 'country': 'Unknown', 'stock': 0},
+    {'_id': 11, 'price': '???', 'country': 'Unknown', 'stock': 0},
+    {'_id': 12, 'price': '', 'country': 'Unknown', 'stock': 0},
+    {'_id': 13, 'name': 'Dell XPS 13', 'price': 139.999, 'country': 'USA', 'stock': 10},
+    {'_id': 14, 'name': 'Acer Swift 5', 'price': 52.999, 'country': 'Taiwan', 'stock': 12},
+    {'_id': 15, 'name': 'Samsung Galaxy Book', 'price': 47.999, 'country': 'South Korea', 'stock': 8},
+    {'_id': 16, 'name': 'Huawei MateBook X', 'price': 89.999, 'country': 'China', 'stock': 6},
+    {'_id': 17, 'name': 'Microsoft Surface Laptop', 'price': 125.999, 'country': 'USA', 'stock': 4},
+    {'_id': 18, 'name': 'Lenovo IdeaPad', 'price': 45.999, 'country': 'China', 'stock': 13},
+    {'_id': 19, 'name': 'HP Pavilion', 'price': 55.999, 'country': 'USA', 'stock': 9},
+    {'_id': 20, 'name': 'Asus VivoBook', 'price': 39.999, 'country': 'Taiwan', 'stock': 18},
+    {'_id': 21, 'name': 'LG Gram', 'price': 119.999, 'country': 'South Korea', 'stock': 3},
+    {'_id': 22, 'name': 'Sony Vaio', 'price': 67.999, 'country': 'Japan', 'stock': 5},
+    {'_id': 23, 'name': 'Apple MacBook Air', 'price': 129.999, 'country': 'USA', 'stock': 6},
+    {'_id': 24, 'name': 'Google Pixelbook', 'price': 99.999, 'country': 'USA', 'stock': 2},
+    {'_id': 25, 'name': 'Dell Inspiron', 'price': 53.999, 'country': 'USA', 'stock': 11},
+    {'_id': 26, 'name': 'Samsung Notebook 9', 'price': 79.999, 'country': 'South Korea', 'stock': 7},
+    {'_id': 27, 'name': 'Razer Blade Stealth', 'price': 119.999, 'country': 'USA', 'stock': 4}
 ]
-
 
 result = collection.insert_many(product_list)
 print(result)
