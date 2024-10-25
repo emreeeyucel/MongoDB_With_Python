@@ -30,19 +30,20 @@ print("Eklenen belgelerin ID'leri:", result.inserted_id)     # result.inserted_i
 
 #  region Çoklu Kayıt Ekleme
 product_list = [
-    {'_id': 1, 'name':  'Lenova X1 Carbon', 'price': 84.999},
-    {'_id': 2, 'name':  'Mcbook Pro M3', 'price': 184.999},
-    {'_id': 3, 'name':  'Asus Zen Book', 'price': 74.999},
-    {'_id': 4, 'name':  'Monster Alba', 'price': 33.999},
-    {'_id': 5, 'name':  'Monster Tulpar', 'price': 64.999},
-    {'_id': 6, 'name':  'Monster Huma', 'price': None},
-    {'_id': 7, 'name':  'HP', 'price': '???'},
-    {'_id': 8, 'name':  None, 'price': '???'},
-    {'_id': 9, 'name':  '???', 'price': ''},
-    {'_id': 10, 'name':  '???'},
-    {'_id': 11, 'price': '???'},
-    {'_id': 12, 'price': ''}
+    {'_id': 1, 'name': 'Lenova X1 Carbon', 'price': 84.999, 'country': 'USA'},
+    {'_id': 2, 'name': 'Mcbook Pro M3', 'price': 184.999, 'country': 'USA'},
+    {'_id': 3, 'name': 'Asus Zen Book', 'price': 74.999, 'country': 'Taiwan'},
+    {'_id': 4, 'name': 'Monster Alba', 'price': 33.999, 'country': 'Turkey'},
+    {'_id': 5, 'name': 'Monster Tulpar', 'price': 64.999, 'country': 'Turkey'},
+    {'_id': 6, 'name': 'Monster Huma', 'price': None, 'country': 'Turkey'},
+    {'_id': 7, 'name': 'HP', 'price': '???', 'country': 'USA'},
+    {'_id': 8, 'name': None, 'price': '???', 'country': 'Unknown'},
+    {'_id': 9, 'name': '???', 'price': '', 'country': None},
+    {'_id': 10, 'name': '???', 'price': '', 'country': 'Unknown'},
+    {'_id': 11, 'price': '???', 'country': 'Unknown'},
+    {'_id': 12, 'price': '', 'country': 'Unknown'}
 ]
+
 
 result = collection.insert_many(product_list)
 print(result)
