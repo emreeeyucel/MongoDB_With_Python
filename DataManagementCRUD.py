@@ -409,3 +409,42 @@ for item in result:
     print(f"Toplam Fiyat (Monster Ürünler): {item['Toplam Fiyat']}")
     print(f"Ortalama Fiyat (Monster Ürünler): {item['Ortalama Fiyat']}")
 # endregion
+
+
+
+
+# region Şehirlere göre toplam stok miktarlarını bulma
+pipeline = [
+    {'$match': {'stock': {'$type': 'int'}}},
+    {'$group': {
+        '_id': '$country',
+        'Toplam Stok': {'$sum': '$stock'}
+    }}
+]
+
+result = collection.aggregate(pipeline)
+for item in result:
+    print(item)
+# endregion
+
+
+
+
+# region USA göre toplam stok miktarlarını bulma
+pipeline = [
+    {'$match': {
+        'stock': {'$type': 'int'},
+        'country': {'$eq': 'USA'}
+    }},
+    {'$group': {
+        '_id': '$country',
+        'Toplam Stok': {'$sum': '$stock'}
+    }}
+]
+
+result = collection.aggregate(pipeline)
+for item in result:
+    print(item)
+
+
+# endregion
