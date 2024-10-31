@@ -470,3 +470,78 @@ update = {'$set': {'status': 'ACTIVE'}}
 result = collection.update_many(query, update)
 print(result.modified_count)
 # endregion
+
+
+
+
+# region Kıtalara göre toplam stok miktarlarını bulma
+pipeline = [
+    {'$match': {'stock': {'$type': 'int'}}},
+    {'$group': {
+        '_id': '$continent',
+        'Toplam Stok': {'$sum': '$stock'}
+    }}
+]
+
+result = collection.aggregate(pipeline)
+for item in result:
+    print(item)
+# endregion
+
+
+
+
+# region Toplam Ürün Sayısını Bulma ($count)
+pipeline = [
+    {"$count": "toplam_ürün_sayısı"}
+]
+
+result = collection.aggregate(pipeline)
+
+for r in result:
+    print(f"Toplam Ürün Sayısı: {r['toplam_ürün_sayısı']}")
+# endregion
+
+
+
+
+# region  En Küçük Fiyatı Bulma ($min)
+pipeline = [
+    {"$group": {"_id": None, "min_fiyat": {"$min": "$price"}}}
+]
+result = collection.aggregate(pipeline)
+
+for r in result:
+    print(f"En Düşük Fiyat: {r['min_fiyat']}")
+# endregion
+
+
+
+
+# region  En Büyük Fiyatı Bulma ($max)
+pipeline = [
+    {"$group": {"_id": None, "max_fiyat": {"$max": "$price"}}}
+]
+
+result = collection.aggregate(pipeline)
+
+for r in result:
+    print(f"En Yüksek Fiyat: {r['max_fiyat']}")
+# endregion
+
+
+
+
+# region En küçük fiyatlı ürünü bulma
+pipeline = [
+    {"$match":  {'price': {'$type': ['int', 'double']}}},                       # Geçersiz fiyatları filtrele
+                {"$sort": {"price": 1}},                                        # Fiyatı küçükten büyüğe sırala
+                {"$limit": 1}                                                   # En düşük fiyatlı ürünü al
+]
+
+result = collection.aggregate(pipeline)
+
+for r in result:
+    print(r)
+    print(f"En Düşük Fiyatlı Ürün: {r['name']}, Fiyat: {r['price']}, Ülke: {r['country']}")
+# endregion
