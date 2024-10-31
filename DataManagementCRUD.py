@@ -60,6 +60,7 @@ product_list = [
     {'_id': 27, 'name': 'Razer Blade Stealth', 'price': 119.999, 'country': 'USA', 'stock': 4, 'continent': 'North America'}
 ]
 
+
 result = collection.insert_many(product_list)
 print(result)
 print(result.acknowledged)      # Eğer bu işlem başarılı bir şekilde gerçekleştiyse True, Başarılı bir şekilde gerçekleşmediyse False döner.
