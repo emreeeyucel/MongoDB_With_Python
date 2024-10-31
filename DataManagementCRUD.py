@@ -445,6 +445,27 @@ pipeline = [
 result = collection.aggregate(pipeline)
 for item in result:
     print(item)
+# endregion
 
 
+
+
+# region Stokları olmayan ürünlere statülerini ekle
+query = {'stock': {'$eq': 0}}
+update = {'$set': {'status': 'PASSIVE'}}
+
+result = collection.update_many(query, update)
+print(result.modified_count)
+# endregion
+
+
+
+
+# region Stokları olan ürünlere statülerini ekleyelim.
+
+query = {'stock': {'$gte': 1}}
+update = {'$set': {'status': 'ACTIVE'}}
+
+result = collection.update_many(query, update)
+print(result.modified_count)
 # endregion
