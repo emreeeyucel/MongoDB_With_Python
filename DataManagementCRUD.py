@@ -29,13 +29,14 @@ print("Eklenen belgelerin ID'leri:", result.inserted_id)     # result.inserted_i
 
 
 #  region Çoklu Kayıt Ekleme
+
 product_list = [
     {'_id': 1, 'name': 'Lenovo X1 Carbon', 'price': 84.999, 'country': 'USA', 'stock': 12, 'continent': 'North America'},
     {'_id': 2, 'name': 'MacBook Pro M3', 'price': 184.999, 'country': 'USA', 'stock': 8, 'continent': 'North America'},
     {'_id': 3, 'name': 'Asus Zen Book', 'price': 74.999, 'country': 'Taiwan', 'stock': 15, 'continent': 'Asia'},
-    {'_id': 4, 'name': 'Monster Alba', 'price': 33.999, 'country': 'Turkey', 'stock': 20, 'continent': 'Asia'},
-    {'_id': 5, 'name': 'Monster Tulpar', 'price': 64.999, 'country': 'Turkey', 'stock': 7, 'continent': 'Asia'},
-    {'_id': 6, 'name': 'Monster Huma', 'price': None, 'country': 'Turkey', 'stock': 0, 'continent': 'Asia'},
+    {'_id': 4, 'name': 'Monster Alba', 'price': 33.999, 'country': 'Turkey', 'stock': 20, 'continent': 'Europe'},
+    {'_id': 5, 'name': 'Monster Tulpar', 'price': 64.999, 'country': 'Turkey', 'stock': 7, 'continent': 'Europe'},
+    {'_id': 6, 'name': 'Monster Huma', 'price': None, 'country': 'Turkey', 'stock': 0, 'continent': 'Europe'},
     {'_id': 7, 'name': 'HP', 'price': '???', 'country': 'USA', 'stock': 5, 'continent': 'North America'},
     {'_id': 8, 'name': None, 'price': '???', 'country': 'Unknown', 'stock': 0, 'continent': 'Unknown'},
     {'_id': 9, 'name': '???', 'country': None, 'stock': 0, 'continent': 'Unknown'},
