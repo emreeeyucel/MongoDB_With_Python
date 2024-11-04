@@ -546,3 +546,32 @@ for r in result:
     print(r)
     print(f"En Düşük Fiyatlı Ürün: {r['name']}, Fiyat: {r['price']}, Ülke: {r['country']}")
 # endregion
+
+
+
+
+# region _id değeri 1 olan üründe country ve continent alanlarını üç alt detaya bölerek update edelim.
+filter = {'_id': 1}
+update = {
+        "$set": {
+            "country": {"country_name": "USA", "state": "California", "region": "Western"},
+            "continent": {"continent_name": "North America", "population": 579000000, "area_km2": 24709000}
+        }
+    }
+
+result = collection.update_one(filter, update)
+print(result.modified_count)
+# endregion
+
+
+
+
+
+# region _id değeri 1 olan üründe state alanını update edelim.
+
+filter = {'_id': 1}
+update = {'$set': {'country.state': 'Texas'}}
+
+result = collection.update_one(filter, update)
+print(result.modified_count)
+# endregion
