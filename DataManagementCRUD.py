@@ -575,3 +575,26 @@ update = {'$set': {'country.state': 'Texas'}}
 result = collection.update_one(filter, update)
 print(result.modified_count)
 # endregion
+
+
+
+
+# region Kaç Adet Texas Eyalet Bilgisi Bulunmaktadır.
+query = {'country.state': {'$regex': 'Texas', '$options': 'i'}}
+print(collection.count_documents(query))
+# endregion
+
+
+
+
+# region Texas eyaletindeki tüm stok bilgisi
+
+pipeline = [
+    {"$match": {"country.state": {"$regex": "Texas", "$options": "i"}}},        # Texas ifadesini içeren belgeleri seç
+    {"$group": {"_id": None, "total_stock": {"$sum": "$stock"}}}                # Stock alanını topla
+]
+
+result = collection.aggregate(pipeline)
+for doc in result:
+    print(f"Texas'taki tüm ürünlerin toplam stoku: {doc['total_stock']}")
+# endregion
