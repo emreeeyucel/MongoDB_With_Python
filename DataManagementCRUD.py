@@ -29,7 +29,6 @@ print("Eklenen belgelerin ID'leri:", result.inserted_id)     # result.inserted_i
 
 
 #  region Çoklu Kayıt Ekleme
-
 product_list = [
     {'_id': 1, 'name': 'Lenovo X1 Carbon', 'price': 84.999, 'country': 'USA', 'stock': 12, 'continent': 'North America'},
     {'_id': 2, 'name': 'MacBook Pro M3', 'price': 184.999, 'country': 'USA', 'stock': 8, 'continent': 'North America'},
@@ -67,7 +66,6 @@ print(result.acknowledged)      # Eğer bu işlem başarılı bir şekilde gerç
 
 # insert_many() -->  MongoDB'ye birden fazla belge eklemek için kullanılır, eklenecek belgelerin bir liste içinde belirtilmesi gerekir.Listelerin içini ise set olarak oluşturmak zorundayız.
 # insert_one() -->   MongoDB'ye sadece tek bir belge eklemek için kullanılır.
-
 #endregion
 
 
@@ -75,7 +73,6 @@ print(result.acknowledged)      # Eğer bu işlem başarılı bir şekilde gerç
 
 # region Kayıtları Ekrana Getirme
 veriler = collection.find()
-
 for item in veriler:
     print(item)
 
