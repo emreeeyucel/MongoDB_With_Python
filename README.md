@@ -38,7 +38,7 @@ Bu projede, MongoDB ve Python kullanarak temel CRUD (Create, Read, Update, Delet
 - **Veri Güncellemeleri:**  
    Kullanıcılar, belirli ürünlerin fiyatlarını toplu şekilde artırabilir ya da tüm ürünlerin fiyatlarını azaltabilirler.
 
-  - **Veri Gruplama ve Aggregation (Pipelining):**  
+- **Veri Gruplama ve Aggregation (Pipelining):**  
    MongoDB'nin aggregate() fonksiyonu ile daha karmaşık sorgular ve veri analizleri yapılabiliyor. Örneğin, tüm ürünlerin ortalama fiyatını hesaplamak için $group operatörü kullanılabilir. Ayrıca, sort(), $match, $limit gibi operatörler ile veriler daha ayrıntılı bir şekilde sıralanabilir ve filtrelenebilir. Bu özellik, kullanıcıların daha derinlemesine analiz yapabilmelerini sağlar.
 
 - **Sıralama ve Sayfalama:**  
