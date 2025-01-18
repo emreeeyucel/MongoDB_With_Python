@@ -29,14 +29,21 @@ Bu projede, MongoDB ve Python kullanarak temel CRUD (Create, Read, Update, Delet
 
 ## Öne Çıkan Sorgular ve İşlemler:
 
-- **Fiyat Aralığına Göre Filtreleme:**  
-   MongoDB'nin `$gt`, `$lt`, `$gte` ve `$lte` gibi operatörleri ile fiyat aralıkları oluşturulup ürünler listeleniyor.
+- **Aralığına Göre Filtreleme:**  
+   MongoDB'nin `$gt`, `$lt`, `$gte` ve `$lte` gibi operatörleri ile veri aralıkları oluşturulup ürünler listeleniyor.
 
 - **Regex ile İsim Arama:**  
    Ürün isimlerinde belirli kelimeleri aramak için regex ifadeleri kullanılarak "Monster" gibi ürünler filtreleniyor.
 
 - **Veri Güncellemeleri:**  
    Kullanıcılar, belirli ürünlerin fiyatlarını toplu şekilde artırabilir ya da tüm ürünlerin fiyatlarını azaltabilirler.
+
+  - **Veri Gruplama ve Aggregation (Pipelining):**  
+   MongoDB'nin aggregate() fonksiyonu ile daha karmaşık sorgular ve veri analizleri yapılabiliyor. Örneğin, tüm ürünlerin ortalama fiyatını hesaplamak için $group operatörü kullanılabilir. Ayrıca, sort(), $match, $limit gibi operatörler ile veriler daha ayrıntılı bir şekilde sıralanabilir ve filtrelenebilir. Bu özellik, kullanıcıların daha derinlemesine analiz yapabilmelerini sağlar.
+
+- **Sıralama ve Sayfalama:**  
+   sort() fonksiyonu ile fiyat, isim, tarih gibi parametrelere göre veriler sıralanabiliyor. Ayrıca, kullanıcılar skip() ve limit() metotları ile sayfalama yaparak, verilerin bir kısmını daha hızlı ve verimli bir şekilde çekebilirler.
+
 
 ## Projeyi GitHub’dan İnceleyebilirsiniz.
 
