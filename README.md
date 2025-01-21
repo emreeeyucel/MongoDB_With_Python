@@ -45,5 +45,3 @@ Bu projede, MongoDB ve Python kullanarak temel CRUD (Create, Read, Update, Delet
    sort() fonksiyonu ile fiyat, isim, tarih gibi parametrelere göre veriler sıralanabiliyor. Ayrıca, kullanıcılar skip() ve limit() metotları ile sayfalama yaparak, verilerin bir kısmını daha hızlı ve verimli bir şekilde çekebilirler.
 
 
-## Projeyi GitHub’dan İnceleyebilirsiniz.
-
