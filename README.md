@@ -42,6 +42,6 @@
    MongoDB'nin aggregate() fonksiyonu ile daha karmaşık sorgular ve veri analizleri yapılabiliyor. Örneğin, tüm ürünlerin ortalama fiyatını hesaplamak için $group operatörü kullanılabilir. Ayrıca, sort(), $match, $limit gibi operatörler ile veriler daha ayrıntılı bir şekilde sıralanabilir ve filtrelenebilir. Bu özellik, kullanıcıların daha derinlemesine analiz yapabilmelerini sağlar.
 
 - **Sıralama ve Sayfalama:**  
-   sort() fonksiyonu ile fiyat, isim, tarih gibi parametrelere göre veriler sıralanabiliyor. Ayrıca, kullanıcılar skip() ve limit() metotları ile sayfalama yaparak, verilerin bir kısmını daha hızlı ve verimli bir şekilde çekebilirler.
+   sort() fonksiyonu ile fiyat, isim, tarih gibi parametrelere göre veriler sıralanabiliyor. Ayrıca, kullanıcılar skip() ve limit() metotları ile sayfalama yaparak, verilerin bir kısmını daha hızlı ve verimli bir şekilde çekebilirler..
 
 
